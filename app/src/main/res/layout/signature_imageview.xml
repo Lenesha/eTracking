@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/img_signature"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="fitXY"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"/>
+
+    <include layout="@layout/update_status"
+        android:id="@+id/sign_image"/>
+
+    <include layout="@layout/update_status"
+        android:visibility="gone"
+        android:id="@+id/update_status"/>
+</LinearLayout>

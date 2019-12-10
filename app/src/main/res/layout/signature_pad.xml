@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.kyanogen.signatureview.SignatureView
+        xmlns:sign="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/signature_view"
+        android:layout_width="match_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_height="250dp"
+        sign:penSize="5dp"
+        sign:backgroundColor="#000000"
+        sign:penColor="#ffffff"
+        sign:enableSignature="true"/>
+
+    <include layout="@layout/update_status"
+        android:id="@+id/update_status"/>
+
+</LinearLayout>

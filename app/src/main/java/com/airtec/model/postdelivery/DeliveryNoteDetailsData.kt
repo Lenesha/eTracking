@@ -7,7 +7,7 @@ data class DeliveryNoteDetailsData(
     @SerializedName("DeliveryNoteDetailsArrayData")
     val deliveryNoteDetailsArrayData: ArrayList<DeliveryNoteDetailsArrayData?> =ArrayList(),
     @SerializedName("EmptyscannedArrayData")
-    val emptyscannedArrayData: List<EmptyscannedArrayData> = listOf(),
+    val emptyscannedArrayData: ArrayList<EmptyscannedArrayData?> =ArrayList(),
     @SerializedName("jsonParamsArrayData")
     val jsonParamsArrayData: List<JsonParamsArrayData> = listOf(),
     @SerializedName("scannedArrayData")

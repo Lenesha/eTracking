@@ -290,8 +290,11 @@ class LoadingFragment : Fragment() {
 
             val emptyscannedArrayData = EmptyscannedArrayData(profileName,"","","","",1,"")
 
+            val emptyscannedArrayDataLits: ArrayList<EmptyscannedArrayData?> =
+                ArrayList()
 
-            val deliveryNoteDetails = DeliveryNoteDetailsData(listNoteArray, listOf(emptyscannedArrayData), listOf(jsonParamsArrayData),
+            emptyscannedArrayDataLits.add(emptyscannedArrayData)
+            val deliveryNoteDetails = DeliveryNoteDetailsData(listNoteArray, emptyscannedArrayDataLits, listOf(jsonParamsArrayData),
                 listOf(scannedArrayData),
                 listOf(signatureArrayData))
 

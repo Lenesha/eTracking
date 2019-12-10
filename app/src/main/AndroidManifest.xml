@@ -34,6 +34,9 @@
 
         <activity android:name=".activities.LoginActivity"
             android:theme="@style/AppThemeLogin"/>
+        <activity android:name=".activities.SignatureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

@@ -50,7 +50,7 @@
             android:maxLines="1"
             android:paddingStart="@dimen/activity_horizontal_margin"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="@string/select"
+            android:hint="@string/select"
             android:textAlignment="viewStart"
             android:textColor="@color/colorBlack"
             android:textSize="@dimen/text_size_18" />

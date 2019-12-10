@@ -2,7 +2,6 @@ package com.airtec.ui.outfordelivery
 
 import android.content.DialogInterface
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import com.airtec.R
 import com.airtec.activities.BaseActivity
 import com.airtec.customviews.ProgressHUD
-import com.airtec.model.DeliveryNoteDetails
 import com.airtec.model.KeyValue
 import com.airtec.model.SumaryDeliveryNotes
 import com.airtec.model.postdelivery.*
@@ -364,8 +362,11 @@ class OutfordeliveryFragment : Fragment() {
 
             val emptyscannedArrayData = EmptyscannedArrayData(profileName,"","","","",1,"")
 
+            val emptyscannedArrayDataLits: ArrayList<EmptyscannedArrayData?> =
+                ArrayList()
+            emptyscannedArrayDataLits.add(emptyscannedArrayData)
 
-            val deliveryNoteDetails = DeliveryNoteDetailsData(listNoteArray, listOf(emptyscannedArrayData), listOf(jsonParamsArrayData),
+            val deliveryNoteDetails = DeliveryNoteDetailsData(listNoteArray, emptyscannedArrayDataLits, listOf(jsonParamsArrayData),
                 listOf(scannedArrayData),
                 listOf(signatureArrayData))
 

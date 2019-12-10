@@ -74,7 +74,12 @@
         android:id="@+id/nav_trip_customer"
         android:name="com.airtec.ui.tripcustomers.TripCustomersFragment"
         android:label="@string/menu_trip_customers"
-        tools:layout="@layout/fragment_tripcustomer" />
+        tools:layout="@layout/fragment_tripcustomer" >
+
+        <action
+            android:id="@+id/nav_trip_delivery_to_customer_action"
+            app:destination="@+id/nav_trip_delivery_to_customer" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_trip_outfordelivery"
@@ -106,6 +111,21 @@
             android:name="tripNumber"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_trip_delivery_to_customer"
+        android:name="com.airtec.ui.tripcustomers.DeliveryToCustomerFragment"
+        android:label="@string/menu_delivery_customer"
+        tools:layout="@layout/fragment_loading" >
+
+        <argument
+            android:name="tripNumber"
+            app:argType="string" />
+
+        <argument
+            android:name="customerName"
+            app:argType="string" />
+    </fragment>
+
 
     <fragment
         android:id="@+id/nav_trip_scan"

@@ -16,15 +16,13 @@ import kotlinx.android.synthetic.main.fragment_scanner.*
 
 class BarcodeScanFragment : Fragment() {
 
-    var scannedResult: String = ""
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
 
-        val root = inflater.inflate(R.layout.fragment_scanner, container, false)
+        val root = inflater.inflate(R.layout.signature_pad, container, false)
 
         return root
     }
@@ -33,41 +31,8 @@ class BarcodeScanFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         btnScan.setOnClickListener {
-            run {
-                IntentIntegrator.forSupportFragment(this) .setOrientationLocked(true).initiateScan();
-            }
+
         }
 
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        var result: IntentResult? = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
-
-        if(result != null){
-
-            if(result.contents != null){
-                scannedResult = result.contents
-                txtValue.text = scannedResult
-            } else {
-                txtValue.text = "scan failed"
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
-        }
-    }
-//    override fun onSaveInstanceState(outState: Bundle?) {
-//
-//        outState?.putString("scannedResult", scannedResult)
-//        super.onSaveInstanceState(outState)
-//    }
-//
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//
-//        savedInstanceState?.let {
-//            scannedResult = it.getString("scannedResult")
-//            txtValue.text = scannedResult
-//        }
-//    }
-
 }

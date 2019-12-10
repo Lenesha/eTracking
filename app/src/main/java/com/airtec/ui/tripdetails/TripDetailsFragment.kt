@@ -2,6 +2,7 @@ package com.airtec.ui.tripdetails
 
 import android.app.DatePickerDialog.OnDateSetListener
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,6 +71,7 @@ class TripDetailsFragment : Fragment() {
 
         val mToDay = format.format(cal.time) //today
 
+        if(TextUtils.isEmpty(date_picker.text))
         date_picker.text = mToDay
 
         val profileName = activity!!.intent.extras!!.getString("USER")
@@ -149,7 +151,13 @@ class TripDetailsFragment : Fragment() {
                 lblListAMount.setOnClickListener({
                     if (viewStatements.name.equals(getString(R.string.tripDate), true)) {
 
-                        findNavController().navigate(R.id.nav_trip_customer)
+                        var number = childList.get(0).indexOf(viewStatements)
+                        var mdoel = Model.get(number-2)  //chaneg this logic
+
+                        var bundle = bundleOf("tripNumber" to mdoel.tripNumber)
+
+
+                        findNavController().navigate(R.id.nav_trip_customer,bundle)
 
                     } else if (viewStatements.name.equals(getString(R.string.tripNumber), true)  ) {
 
