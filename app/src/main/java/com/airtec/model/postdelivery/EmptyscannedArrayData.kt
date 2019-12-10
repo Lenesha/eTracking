@@ -15,7 +15,7 @@ data class EmptyscannedArrayData(
     @SerializedName("ModifiedOn")
     val modifiedOn: String? = "",
     @SerializedName("SlNo")
-    val slNo: String? = "",
+    val slNo: Int? = 0,
     @SerializedName("TripNumber")
     val tripNumber: String? = ""
 )

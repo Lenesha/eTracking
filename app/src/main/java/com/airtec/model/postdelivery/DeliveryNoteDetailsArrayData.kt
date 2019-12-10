@@ -9,7 +9,7 @@ data class DeliveryNoteDetailsArrayData(
     @SerializedName("AddedOn")
     val addedOn: String?,
     @SerializedName("Cust_Account_ID")
-    val custAccountID: String?,
+    val custAccountID: Int? = null,
     @SerializedName("Cust_Account_Number")
     val custAccountNumber: String?,
     @SerializedName("Cust_Name")
@@ -17,13 +17,13 @@ data class DeliveryNoteDetailsArrayData(
     @SerializedName("Del_Date")
     val delDate: String?,
     @SerializedName("Del_Qty")
-    val delQty: String?,
+    val delQty: Double? = null,
     @SerializedName("Delivery_ID")
-    val deliveryID:String?,
+    val deliveryID: Int? = null,
     @SerializedName("Delivery_Note_ID")
-    val deliveryNoteID: String?,
+    val deliveryNoteID: Int? = null,
     @SerializedName("ID")
-    val iD: String?,
+    val iD: Int? = null,
     @SerializedName("Item_Code")
     val itemCode: String?,
     @SerializedName("Item_Decription")
@@ -35,7 +35,7 @@ data class DeliveryNoteDetailsArrayData(
     @SerializedName("Status")
     val status: String?,
     @SerializedName("Trip_Number")
-    val tripNumber: String?,
+    val tripNumber: Int? = null,
     @SerializedName("UOM")
     val uOM: String?
 )

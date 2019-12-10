@@ -15,7 +15,7 @@ data class ScannedArrayData(
     @SerializedName("ModifiedOn")
     val modifiedOn: String? = "",
     @SerializedName("SlNo")
-    val slNo:String? = "",
+    val slNo:Int? = 1,
     @SerializedName("TripNumber")
     val tripNumber: String? = ""
 )

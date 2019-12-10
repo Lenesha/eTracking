@@ -43,4 +43,5 @@
     <string name="update_status">Update Status</string>
     <string name="menu_scan">Scan barcodes</string>
     <string name="menu_loading">Loading</string>
+    <string name="details">Details</string>
 </resources>

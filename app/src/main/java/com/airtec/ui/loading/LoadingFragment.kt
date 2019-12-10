@@ -33,7 +33,7 @@ class LoadingFragment : Fragment() {
     }
     var disposable: Disposable? = null
 
-    private var tripNumber: Any? = null
+    private var tripNumber: String? = null
 
     private var profileName:String? =""
 
@@ -273,10 +273,10 @@ class LoadingFragment : Fragment() {
 
                 val details1
                         = DeliveryNoteDetailsArrayData(
-                    profileName,item.addedOn,item.custAccountID,item.custAccountNumber,item.custName,
-                    item.delDate,item.delQty, item.deliveryID,
-                    item.deliveryID,item.iD,item.itemCode,item.itemDecription,
-                    item.modifiedBy,item.modifiedBy,"",tripNumber as String,item.uOM
+                    profileName,item.addedOn,item.custAccountID!!.toInt(),item.custAccountNumber,item.custName,
+                    item.delDate,item.delQty!!.toDouble() , item.deliveryID!!.toInt(),
+                    item.deliveryID!!.toInt(),0,item.itemCode,item.itemDecription,
+                    item.modifiedBy,item.modifiedBy,"",tripNumber!!.toInt(),item.uOM
                 )
                 listNoteArray.add(details1)
 
@@ -284,11 +284,11 @@ class LoadingFragment : Fragment() {
 
             val jsonParamsArrayData = JsonParamsArrayData(tripNumber as String)
 
-            val scannedArrayData = ScannedArrayData(profileName,"","","","","NoData","")
+            val scannedArrayData = ScannedArrayData(profileName,"","","","",1,"")
 
             val signatureArrayData = SignatureArrayData(profileName,"","","","NoData","")
 
-            val emptyscannedArrayData = EmptyscannedArrayData(profileName,"","","","","NoData","")
+            val emptyscannedArrayData = EmptyscannedArrayData(profileName,"","","","",1,"")
 
 
             val deliveryNoteDetails = DeliveryNoteDetailsData(listNoteArray, listOf(emptyscannedArrayData), listOf(jsonParamsArrayData),
