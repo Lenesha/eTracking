@@ -25,6 +25,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_trip_detail.*
+import org.w3c.dom.Text
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +33,8 @@ import java.util.*
 
 class TripDetailsFragment : Fragment() {
     private lateinit var mTripDate: String
+    private var date: String=""
+
     val STATEMENT_DATE_FORMAT = "yyyy-MM-dd"
     private lateinit var Model :List<TripDetail>
 
@@ -71,8 +74,10 @@ class TripDetailsFragment : Fragment() {
 
         val mToDay = format.format(cal.time) //today
 
-        if(TextUtils.isEmpty(date_picker.text))
-        date_picker.text = mToDay
+        if(TextUtils.isEmpty(date))
+        date = mToDay
+
+        date_picker.text = date
 
         val profileName = activity!!.intent.extras!!.getString("USER")
 
@@ -309,6 +314,7 @@ class TripDetailsFragment : Fragment() {
                 } catch (e: ParseException) {
                     e.printStackTrace()
                 }
+                date = mTripDate
                 date_picker.setText(mTripDate)
             })
     }
