@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/textview_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:background="@color/colorWhite"
+    android:gravity="center"
+    android:id="@+id/header">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_trip_details"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:layout_weight="2.4"
+        android:textSize="@dimen/text_size_16"
+
+      />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_delivery_details"
+        android:textColor="@color/colorPrimary"
+        android:gravity="center_vertical|center_horizontal"
+        android:textAllCaps="true"
+        android:id="@+id/delivery"
+        android:layout_weight="1.5"
+        android:visibility="gone"
+        android:textSize="@dimen/text_size_14"
+
+        />
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_trip_status"
+        android:textColor="@color/colorPrimary"
+        android:layout_weight="0.75"
+        android:textAllCaps="true"
+        android:visibility="gone"
+        android:textSize="@dimen/text_size_14"
+
+        android:gravity="center_vertical|center_horizontal"
+       />
+
+
+</LinearLayout>

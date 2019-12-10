@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/tab_bar"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/descriptionText"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_toStartOf="@+id/group_header_arrow"
+        android:layout_toLeftOf="@id/group_header_arrow"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:textAllCaps="true"
+        android:textSize="@dimen/text_size_14"
+        android:textColor="@color/colorBlue"
+       />
+
+    <ImageView
+        android:id="@+id/group_header_arrow"
+        android:src="@drawable/plus_icon"
+        android:layout_centerVertical="true"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        />
+
+</RelativeLayout>

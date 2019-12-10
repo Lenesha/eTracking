@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGrey">
+
+    <TextView
+        android:id="@+id/tripdateTxtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:text="@string/tripDate"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:id="@+id/date_pickerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview_height"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_toEndOf="@+id/tripdateTxtView"
+        android:layout_toRightOf="@id/tripdateTxtView"
+
+        android:layout_marginTop="8dp"
+        android:background="@drawable/custom_text_edit"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tripdateTxtView">
+
+        <TextView
+            android:id="@+id/date_picker"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:paddingStart="@dimen/activity_horizontal_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:text="@string/select"
+            android:textAlignment="viewStart"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_size_18" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:background="@drawable/ic_calendar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@+id/date_pickerLayout"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+
+        android:id="@+id/buttonlayout"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/search"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="@dimen/textview_height"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:background="@color/colorBlue"
+        android:text="@string/search"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintEnd_toStartOf="@id/reset"
+        app:layout_constraintTop_toBottomOf="@id/date_pickerLayout"
+
+        app:layout_constraintWidth_percent="0.5" />
+
+    <Button
+        android:id="@+id/reset"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/textview_height"
+        android:layout_weight="1"
+
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+
+        android:background="@color/colorAccent"
+        android:text="@string/reset"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintBottom_toBottomOf="@+id/search"
+        app:layout_constraintStart_toEndOf="@+id/search"
+        app:layout_constraintTop_toTopOf="@id/search"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:layout_constraintWidth_percent="0.5" />
+    </LinearLayout>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/textview_height"
+        layout="@layout/track_claim_header"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/buttonlayout"
+
+        android:id="@+id/tab_bar">
+    </include>
+    <ExpandableListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:groupIndicator="@null"
+        android:divider="@drawable/expandale_list_divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_bar"
+        android:layout_below="@+id/tab_bar"
+
+        android:id="@+id/expandableListView">
+    </ExpandableListView>
+
+    <TextView
+        android:id="@+id/empty_list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/no_items"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+
+        android:visibility="gone" />
+
+</RelativeLayout>

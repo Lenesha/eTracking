@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.airtec.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+
+        <action
+            android:id="@+id/nav_trip_details_action"
+            app:destination="@+id/nav_trip_details" />
+
+        <action
+            android:id="@+id/nav_delivery_details_action"
+            app:destination="@+id/nav_delivery_details" />
+
+        <action
+            android:id="@+id/nav_trip_status_action"
+            app:destination="@+id/nav_trip_status" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_trip_details"
+        android:name="com.airtec.ui.tripdetails.TripDetailsFragment"
+        android:label="@string/menu_trip_details"
+        tools:layout="@layout/fragment_trip_detail" >
+
+        <action
+            android:id="@+id/nav_trip_customer_action"
+            app:destination="@+id/nav_trip_customer" />
+
+        <action
+            android:id="@+id/nav_trip_outfordelivery_action"
+            app:destination="@+id/nav_trip_outfordelivery" />
+
+        <action
+            android:id="@+id/nav_trip_loading_action"
+            app:destination="@+id/nav_trip_loading" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_delivery_details"
+        android:name="com.airtec.ui.deliverydetails.DeliveryDetailsFragment"
+        android:label="@string/menu_delivery_details"
+        tools:layout="@layout/fragment_deliverydetails" />
+
+    <fragment
+        android:id="@+id/nav_trip_status"
+        android:name="com.airtec.ui.tripstatus.TripStatusFragment"
+        android:label="@string/menu_trip_status"
+        tools:layout="@layout/fragment_tripstatus" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.airtec.ui.logout.LogoutFragment"
+        android:label="@string/menu_logout"
+        tools:layout="@layout/fragment_logout" >
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_about_us"
+        android:name="com.airtec.ui.aboutus.AboutusFragment"
+        android:label="@string/menu_about_us"
+        tools:layout="@layout/fragment_aboutus" />
+
+    <fragment
+        android:id="@+id/nav_trip_customer"
+        android:name="com.airtec.ui.tripcustomers.TripCustomersFragment"
+        android:label="@string/menu_trip_customers"
+        tools:layout="@layout/fragment_tripcustomer" />
+
+    <fragment
+        android:id="@+id/nav_trip_outfordelivery"
+        android:name="com.airtec.ui.outfordelivery.OutfordeliveryFragment"
+        android:label="@string/menu_outfordelivery"
+        tools:layout="@layout/fragment_outfordelivery" >
+
+        <action
+            android:id="@+id/nav_trip_scan_action"
+            app:destination="@+id/nav_trip_scan" />
+
+        <argument
+            android:name="tripNumber"
+            app:argType="string" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_trip_loading"
+        android:name="com.airtec.ui.loading.LoadingFragment"
+        android:label="@string/menu_loading"
+        tools:layout="@layout/fragment_loading" >
+
+        <action
+            android:id="@+id/nav_trip_scan_action"
+            app:destination="@+id/nav_trip_scan" />
+
+        <argument
+            android:name="tripNumber"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_trip_scan"
+        android:name="com.airtec.ui.scan.BarcodeScanFragment"
+        android:label="@string/menu_scan"
+        tools:layout="@layout/fragment_scanner" />
+</navigation>
