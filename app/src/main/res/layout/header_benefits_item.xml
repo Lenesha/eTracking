@@ -4,22 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/tab_bar"
+    android:padding="10dp"
     android:orientation="horizontal">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/descriptionText"
-        android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_toStartOf="@+id/group_header_arrow"
         android:layout_toLeftOf="@id/group_header_arrow"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:textAllCaps="true"
         android:textSize="@dimen/text_size_14"
+        android:layout_centerVertical="true"
+
         android:textColor="@color/colorBlue"
        />
 

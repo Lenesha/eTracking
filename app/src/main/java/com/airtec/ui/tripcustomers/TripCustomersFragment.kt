@@ -163,7 +163,7 @@ class TripCustomersFragment : Fragment() {
             }
             val innerCHildList: ArrayList<KeyValue> =
                 ArrayList<KeyValue>()
-            medicalBenefitsGroup.add(item.tripNumber)
+            medicalBenefitsGroup.add(item.custName)
                 innerCHildList.add(
                     generateEachCellItem(
                         getString(R.string.tripNumber),

@@ -147,7 +147,7 @@ class LoadingFragment : Fragment() {
         for (item in branchList) {
             val innerCHildList: ArrayList<KeyValue> =
                 ArrayList<KeyValue>()
-            medicalBenefitsGroup.add(item.tripNumber!!)
+            medicalBenefitsGroup.add(item.itemDecription!!)
             innerCHildList.add(
                 generateEachCellItem(
                     getString(R.string.tripNumber),

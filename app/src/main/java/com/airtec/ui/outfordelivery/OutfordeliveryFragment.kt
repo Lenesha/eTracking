@@ -200,7 +200,7 @@ class OutfordeliveryFragment : Fragment() {
 
             val innerCHildList: ArrayList<KeyValue> =
                 ArrayList<KeyValue>()
-            medicalBenefitsGroup.add(item.tripNumber)
+            medicalBenefitsGroup.add(item.itemDecription)
             innerCHildList.add(
                 generateEachCellItem(
                     getString(R.string.tripNumber),
