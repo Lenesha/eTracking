@@ -3,6 +3,7 @@ package com.airtec.ui.outfordelivery
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.airtec.R
 import com.airtec.activities.BaseActivity
 import com.airtec.customviews.ProgressHUD
+import com.airtec.model.DeliveryNoteDetails
 import com.airtec.model.KeyValue
 import com.airtec.model.SumaryDeliveryNotes
 import com.airtec.model.postdelivery.*
@@ -21,17 +23,20 @@ import com.airtec.network.NetworkInterface
 import com.airtec.ui.adapter.FTADataBinder
 import com.airtec.ui.adapter.GenericExpandableListAdaptor
 import com.google.gson.GsonBuilder
-import com.google.zxing.integration.android.IntentIntegrator
-import com.google.zxing.integration.android.IntentResult
+
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_outfordelivery.*
+import me.sudar.zxingorient.ZxingOrient
+import me.sudar.zxingorient.ZxingOrientResult
 import java.util.*
 
 class OutfordeliveryFragment : Fragment() {
     private var tripNumber: String? = null
     private lateinit var Model :List<SumaryDeliveryNotes>
+    private lateinit var deliveryNoteList :List<DeliveryNoteDetails>
+
     private var profileName:String? =""
 
     private lateinit var adapter: GenericExpandableListAdaptor<String, KeyValue>
@@ -85,7 +90,8 @@ class OutfordeliveryFragment : Fragment() {
 
         expandableListView.setAdapter(adapter)
 
-        getSummaryDeliveryDetails(tripNumber!!)
+        getdeliveryDetails(tripNumber as String)
+
 
 
         footer.findViewById<TextView>(R.id.update).setText("Security check in-out scan")
@@ -93,11 +99,45 @@ class OutfordeliveryFragment : Fragment() {
 
 
             run {
-                IntentIntegrator.forSupportFragment(this).setOrientationLocked(true).initiateScan();
+//                IntentIntegrator.forSupportFragment(this).setOrientationLocked(true).initiateScan();
             }
 
         })
     }
+    private fun getdeliveryDetails(tripNumber: String) {
+        var activity = activity as BaseActivity
+
+        if (activity.isNetworkAvailable(activity)) {
+            val msg: String = getResources().getString(R.string.msg_please_wait)
+            ProgressHUD.show(activity, msg, true, false, null)
+
+            disposable =
+                wikiApiServe.getDeliveryDetails(tripNumber)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                        { result -> showResultDeliveryDetails(result) },
+                        { error -> showErrorDeliveryDetails(error.message) }
+                    )
+        } else
+
+            showErrorUpdating("Intenet connection unavailable")
+    }
+    private fun showResultDeliveryDetails(token: Any) {
+        ProgressHUD.dismisss()
+
+        val gson = GsonBuilder().create()
+        deliveryNoteList = gson.fromJson(token as String, Array<DeliveryNoteDetails>::class.java).toList()
+        getSummaryDeliveryDetails(tripNumber!!)
+
+    }
+    private fun showErrorDeliveryDetails(message: String?) {
+
+        ProgressHUD.dismisss()
+
+
+    }
+
 
     private fun getSummaryDeliveryDetails(tripNumber: String) {
         var activity = activity as BaseActivity
@@ -153,6 +193,11 @@ class OutfordeliveryFragment : Fragment() {
         medicalBenefitsGroup.clear()
         childList.clear()
         for (item in branchList) {
+            if(TextUtils.isEmpty(item.tripNumber )){
+
+                break
+            }
+
             val innerCHildList: ArrayList<KeyValue> =
                 ArrayList<KeyValue>()
             medicalBenefitsGroup.add(item.tripNumber)
@@ -197,7 +242,11 @@ class OutfordeliveryFragment : Fragment() {
 
     private val groupDatabinder: FTADataBinder<String> =
         object : FTADataBinder<String>() {
-            override fun bind(viewStatements: String?, view: View) {
+            override fun bind(
+                viewStatements: String,
+                view: View,
+                groupPosition: Int
+            ) {
                 findTextViewIDs(view)
                 val lblListHeader = view
                     .findViewById<View>(R.id.descriptionText) as TextView
@@ -211,7 +260,8 @@ class OutfordeliveryFragment : Fragment() {
         object : FTADataBinder<KeyValue>() {
             override fun bind(
                 viewStatements: KeyValue,
-                view: View
+                view: View,
+                groupPosition: Int
             ) {
                 findTextViewIDs(view)
                 val txtListChild = view
@@ -259,8 +309,8 @@ class OutfordeliveryFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
-        var result: IntentResult? =
-            IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        var    result: ZxingOrientResult? =
+            ZxingOrient.parseActivityResult(requestCode, resultCode,data);
 
         if (result != null) {
 
@@ -341,14 +391,14 @@ class OutfordeliveryFragment : Fragment() {
 
             val listNoteArray: ArrayList<DeliveryNoteDetailsArrayData?> = ArrayList()
 
-            for(item in Model ){
+            for(item in deliveryNoteList ){
 
                 val details1
                         = DeliveryNoteDetailsArrayData(
-                    profileName,"",0,"","",
-                    "",0.0 , 0,
-                   0,0,item.itemCode,item.itemDecription,
-                    "","","",tripNumber!!.toInt(),""
+                    profileName,item.addedOn,item.custAccountID!!.toInt(),item.custAccountNumber,item.custName,
+                    item.delDate,item.delQty!!.toDouble() , item.deliveryID!!.toInt(),
+                    item.iD!!.toInt(),0,item.itemCode,item.itemDecription,
+                    item.modifiedBy,item.modifiedBy,"",tripNumber!!.toInt(),item.uOM
                 )
                 listNoteArray.add(details1)
 

@@ -76,7 +76,7 @@ public class GenericExpandableListAdaptor<T1, T2> extends BaseExpandableListAdap
 			setPadding = false;
 		}
 		if (convertView != null)
-			childDatabinder.bind(model, convertView);
+			childDatabinder.bind(model, convertView,groupPosition);
 
 		return convertView;
 	}
@@ -121,7 +121,7 @@ public class GenericExpandableListAdaptor<T1, T2> extends BaseExpandableListAdap
 
 		T1 model = this.groups.get(groupPosition);
 
-		groupDatabinder.bind(model, convertView);
+		groupDatabinder.bind(model, convertView, groupPosition);
 
 		if (boolExpandexpandList) {
 			ExpandableListView eLV = (ExpandableListView) parent;

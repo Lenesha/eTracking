@@ -115,7 +115,7 @@
         android:id="@+id/nav_trip_delivery_to_customer"
         android:name="com.airtec.ui.tripcustomers.DeliveryToCustomerFragment"
         android:label="@string/menu_delivery_customer"
-        tools:layout="@layout/fragment_loading" >
+        tools:layout="@layout/fragment_customerdelivery" >
 
         <argument
             android:name="tripNumber"
@@ -125,7 +125,21 @@
             android:name="customerName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_trip_customer_sign_scanempty"
+        android:name="com.airtec.ui.tripcustomers.TripSignatureEmptyScanFragment"
+        android:label="@string/menu_delivery_customer"
+        tools:layout="@layout/fragment_customerdelivery" >
 
+        <argument
+            android:name="tripNumber"
+            app:argType="string" />
+
+        <argument
+            android:name="customerName"
+            app:argType="string" />
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_trip_scan"

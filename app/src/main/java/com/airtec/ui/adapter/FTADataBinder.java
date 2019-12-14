@@ -4,7 +4,7 @@ import android.view.View;
 
 
 public abstract class FTADataBinder<T> {
-	public abstract void bind(T model, View view);
+	public abstract void bind(T model, View view, int groupPosition);
 
 	@SuppressWarnings("hiding")
 	public <T> T findViewToDatabind(View view, int id) {

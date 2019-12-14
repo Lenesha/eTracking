@@ -1,6 +1,8 @@
 package com.airtec.model
 
 
+import android.os.Parcel
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class DeliveryNoteDetails(
@@ -34,4 +36,55 @@ data class DeliveryNoteDetails(
     val tripNumber: String?,
     @SerializedName("UOM")
     val uOM: String?
-)
+) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString()
+    ) {
+    }
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(addedBy)
+        parcel.writeString(addedOn)
+        parcel.writeString(custAccountID)
+        parcel.writeString(custAccountNumber)
+        parcel.writeString(custName)
+        parcel.writeString(delDate)
+        parcel.writeString(delQty)
+        parcel.writeString(deliveryID)
+        parcel.writeString(iD)
+        parcel.writeString(itemCode)
+        parcel.writeString(itemDecription)
+        parcel.writeString(modifiedBy)
+        parcel.writeString(modifiedOn)
+        parcel.writeString(tripNumber)
+        parcel.writeString(uOM)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<DeliveryNoteDetails> {
+        override fun createFromParcel(parcel: Parcel): DeliveryNoteDetails {
+            return DeliveryNoteDetails(parcel)
+        }
+
+        override fun newArray(size: Int): Array<DeliveryNoteDetails?> {
+            return arrayOfNulls(size)
+        }
+    }
+}

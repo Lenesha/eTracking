@@ -25,7 +25,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_trip_detail.*
-import org.w3c.dom.Text
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -123,7 +122,11 @@ class TripDetailsFragment : Fragment() {
 
     private val groupDatabinder: FTADataBinder<String> =
         object : FTADataBinder<String>() {
-            override fun bind(viewStatements: String?, view: View) {
+            override fun bind(
+                viewStatements: String,
+                view: View,
+                groupPosition: Int
+            ) {
                 findTextViewIDs(view)
                 val lblListHeader = view
                     .findViewById<View>(R.id.descriptionText) as TextView
@@ -136,7 +139,8 @@ class TripDetailsFragment : Fragment() {
         object : FTADataBinder<KeyValue>() {
             override fun bind(
                 viewStatements: KeyValue,
-                view: View
+                view: View,
+                groupPosition: Int
             ) {
                 findTextViewIDs(view)
                 val txtListChild = view
@@ -146,27 +150,25 @@ class TripDetailsFragment : Fragment() {
                 txtListChild.setText(viewStatements.name)
                 lblListAMount.setText(viewStatements.value)
 
-                if (viewStatements.name.equals(
-                        getString(R.string.tripDate),
-                        true
-                    ) || viewStatements.name.equals(getString(R.string.tripNumber), true)
-                ) {
+                if (viewStatements.name.equals(getString(R.string.tripDate), true) || viewStatements.name.equals(getString(R.string.tripNumber), true)) {
                     lblListAMount.setTextColor(context!!.resources!!.getColor(R.color.colorBlue))
+                }
+                else{
+                    lblListAMount.setTextColor(context!!.resources!!.getColor(R.color.claim_text_color))
+
                 }
                 lblListAMount.setOnClickListener({
                     if (viewStatements.name.equals(getString(R.string.tripDate), true)) {
 
-                        var number = childList.get(0).indexOf(viewStatements)
-                        var mdoel = Model.get(number-2)  //chaneg this logic
+                        var mdoel = Model.get(groupPosition)  //chaneg this logic
 
                         var bundle = bundleOf("tripNumber" to mdoel.tripNumber)
-
 
                         findNavController().navigate(R.id.nav_trip_customer,bundle)
 
                     } else if (viewStatements.name.equals(getString(R.string.tripNumber), true)  ) {
 
-                        var mdoel = Model.get(childList.get(0).indexOf(viewStatements)-1)
+                        var mdoel = Model.get(groupPosition)
                         var bundle = bundleOf("tripNumber" to viewStatements.value)
 
                         if(mdoel.tripStatus.equals("OPEN",true) ||(mdoel.tripStatus.equals("Security Checked-In",true) )

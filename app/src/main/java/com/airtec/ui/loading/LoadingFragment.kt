@@ -200,7 +200,11 @@ class LoadingFragment : Fragment() {
     }
     private val groupDatabinder: FTADataBinder<String> =
         object : FTADataBinder<String>() {
-            override fun bind(viewStatements: String?, view: View) {
+            override fun bind(
+                viewStatements: String,
+                view: View,
+                groupPosition: Int
+            ) {
                 findTextViewIDs(view)
                 val lblListHeader = view
                     .findViewById<View>(R.id.descriptionText) as TextView
@@ -214,7 +218,8 @@ class LoadingFragment : Fragment() {
         object : FTADataBinder<KeyValue>() {
             override fun bind(
                 viewStatements: KeyValue,
-                view: View
+                view: View,
+                groupPosition: Int
             ) {
                 findTextViewIDs(view)
                 val txtListChild = view
@@ -275,7 +280,7 @@ class LoadingFragment : Fragment() {
                         = DeliveryNoteDetailsArrayData(
                     profileName,item.addedOn,item.custAccountID!!.toInt(),item.custAccountNumber,item.custName,
                     item.delDate,item.delQty!!.toDouble() , item.deliveryID!!.toInt(),
-                    item.deliveryID!!.toInt(),0,item.itemCode,item.itemDecription,
+                    item.iD!!.toInt(),0,item.itemCode,item.itemDecription,
                     item.modifiedBy,item.modifiedBy,"",tripNumber!!.toInt(),item.uOM
                 )
                 listNoteArray.add(details1)
@@ -284,11 +289,11 @@ class LoadingFragment : Fragment() {
 
             val jsonParamsArrayData = JsonParamsArrayData(tripNumber as String)
 
-            val scannedArrayData = ScannedArrayData(profileName,"","","","",1,"")
+            val scannedArrayData = ScannedArrayData(profileName,"","","","",1,tripNumber)
 
-            val signatureArrayData = SignatureArrayData(profileName,"","","","NoData","")
+            val signatureArrayData = SignatureArrayData(profileName,"","","","NoData",tripNumber)
 
-            val emptyscannedArrayData = EmptyscannedArrayData(profileName,"","","","",1,"")
+            val emptyscannedArrayData = EmptyscannedArrayData(profileName,"","","","",1,tripNumber)
 
             val emptyscannedArrayDataLits: ArrayList<EmptyscannedArrayData?> =
                 ArrayList()

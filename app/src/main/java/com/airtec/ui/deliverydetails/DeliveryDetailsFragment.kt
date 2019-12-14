@@ -7,14 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.airtec.R
 import com.airtec.activities.BaseActivity
 import com.airtec.customviews.ProgressHUD
 import com.airtec.model.DeliveryNoteDetails
 import com.airtec.model.KeyValue
-import com.airtec.model.TripDetail
 import com.airtec.network.NetworkInterface
 import com.airtec.ui.adapter.FTADataBinder
 import com.airtec.ui.adapter.GenericExpandableListAdaptor
@@ -209,7 +207,11 @@ class DeliveryDetailsFragment : Fragment() {
     }
     private val groupDatabinder: FTADataBinder<String> =
         object : FTADataBinder<String>() {
-            override fun bind(viewStatements: String?, view: View) {
+            override fun bind(
+                viewStatements: String,
+                view: View,
+                groupPosition: Int
+            ) {
                 findTextViewIDs(view)
                 val lblListHeader = view
                     .findViewById<View>(R.id.descriptionText) as TextView
@@ -222,7 +224,8 @@ class DeliveryDetailsFragment : Fragment() {
         object : FTADataBinder<KeyValue>() {
             override fun bind(
                 viewStatements: KeyValue,
-                view: View
+                view: View,
+                groupPosition: Int
             ) {
                 findTextViewIDs(view)
                 val txtListChild = view

@@ -20,7 +20,4 @@
 
     <include layout="@layout/update_status"
         android:id="@+id/update_status"/>
-    <include layout="@layout/update_status"
-        android:id="@+id/empty_cylinders"
-        android:visibility="gone"/>
 </LinearLayout>

@@ -24,8 +24,6 @@ import com.google.gson.GsonBuilder
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.fragment_outfordelivery.*
-import kotlinx.android.synthetic.main.fragment_tripcustomer.*
 import kotlinx.android.synthetic.main.fragment_tripcustomer.empty_list_item
 import kotlinx.android.synthetic.main.fragment_tripcustomer.expandableListView
 import kotlinx.android.synthetic.main.fragment_tripcustomer.search
@@ -219,7 +217,11 @@ class TripCustomersFragment : Fragment() {
     }
     private val groupDatabinder: FTADataBinder<String> =
         object : FTADataBinder<String>() {
-            override fun bind(viewStatements: String?, view: View) {
+            override fun bind(
+                viewStatements: String,
+                view: View,
+                groupPosition: Int
+            ) {
                 findTextViewIDs(view)
                 val lblListHeader = view
                     .findViewById<View>(R.id.descriptionText) as TextView
@@ -232,7 +234,8 @@ class TripCustomersFragment : Fragment() {
         object : FTADataBinder<KeyValue>() {
             override fun bind(
                 viewStatements: KeyValue,
-                view: View
+                view: View,
+                groupPosition: Int
             ) {
                 findTextViewIDs(view)
                 val txtListChild = view
@@ -248,6 +251,10 @@ class TripCustomersFragment : Fragment() {
                     )
                 ) {
                     lblListAMount.setTextColor(context!!.resources!!.getColor(R.color.colorBlue))
+                }
+                else{
+                    lblListAMount.setTextColor(context!!.resources!!.getColor(R.color.claim_text_color))
+
                 }
 
                 lblListAMount.setOnClickListener({

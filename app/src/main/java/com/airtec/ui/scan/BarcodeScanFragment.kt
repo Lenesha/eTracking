@@ -10,8 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.airtec.R
-import com.google.zxing.integration.android.IntentIntegrator
-import com.google.zxing.integration.android.IntentResult
+
 import kotlinx.android.synthetic.main.fragment_scanner.*
 
 class BarcodeScanFragment : Fragment() {
