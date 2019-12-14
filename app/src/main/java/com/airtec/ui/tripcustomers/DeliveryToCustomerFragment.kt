@@ -127,51 +127,51 @@ class DeliveryToCustomerFragment() : Fragment() {
             }
         })
 
-        if(emptyscannedArrayData!=null && emptyscannedArrayData.size>0){
-
-            for(item in emptyscannedArrayData){
-                var  detailsFooter = layoutInflater.inflate(
-                    R.layout.scanned_result,
-                    expandableListView,
-                    false
-                )
-
-
-                detailsFooter!!.findViewById<View>(R.id.la1)
-                    .findViewById<TextView>(R.id.descriptionText)
-                    .setText("SL NO")
-                detailsFooter!!.findViewById<View>(R.id.la1)
-                    .findViewById<TextView>(R.id.amount).setText(emptyCylinderCount.toString())
-                emptyCylinderCount++
-
-                detailsFooter!!.findViewById<View>(R.id.la2)
-                    .findViewById<TextView>(R.id.descriptionText)
-                    .setText(getString(R.string.tripNumber))
-                detailsFooter!!.findViewById<View>(R.id.la2)
-                    .findViewById<TextView>(R.id.amount)
-                    .setText(tripNumber)
-
-                detailsFooter!!.findViewById<View>(R.id.la3)
-                    .findViewById<TextView>(R.id.descriptionText)
-                    .setText("Barcode Value")
-                detailsFooter!!.findViewById<View>(R.id.la3)
-                    .findViewById<TextView>(R.id.amount)
-                    .setText(scannedResult)
-
-                detailsFooter!!.findViewById<ImageView>(R.id.delete).setOnClickListener({
-
-                    expandableListView.removeFooterView(detailsFooter)
-
-                })
-                detailsFooter!!.findViewById<View>(R.id.update_status).visibility = GONE
-
-                expandableListView.addFooterView(detailsFooter)
-            }
-
-            addNextFooter()
-
-
-        }
+//        if(emptyscannedArrayData!=null && emptyscannedArrayData.size>0){
+//
+//            for(item in emptyscannedArrayData){
+//                var  detailsFooter = layoutInflater.inflate(
+//                    R.layout.scanned_result,
+//                    expandableListView,
+//                    false
+//                )
+//
+//
+//                detailsFooter!!.findViewById<View>(R.id.la1)
+//                    .findViewById<TextView>(R.id.descriptionText)
+//                    .setText("SL NO")
+//                detailsFooter!!.findViewById<View>(R.id.la1)
+//                    .findViewById<TextView>(R.id.amount).setText(emptyCylinderCount.toString())
+//                emptyCylinderCount++
+//
+//                detailsFooter!!.findViewById<View>(R.id.la2)
+//                    .findViewById<TextView>(R.id.descriptionText)
+//                    .setText(getString(R.string.tripNumber))
+//                detailsFooter!!.findViewById<View>(R.id.la2)
+//                    .findViewById<TextView>(R.id.amount)
+//                    .setText(tripNumber)
+//
+//                detailsFooter!!.findViewById<View>(R.id.la3)
+//                    .findViewById<TextView>(R.id.descriptionText)
+//                    .setText("Barcode Value")
+//                detailsFooter!!.findViewById<View>(R.id.la3)
+//                    .findViewById<TextView>(R.id.amount)
+//                    .setText(scannedResult)
+//
+//                detailsFooter!!.findViewById<ImageView>(R.id.delete).setOnClickListener({
+//
+//                    expandableListView.removeFooterView(detailsFooter)
+//
+//                })
+//                detailsFooter!!.findViewById<View>(R.id.update_status).visibility = GONE
+//
+//                expandableListView.addFooterView(detailsFooter)
+//            }
+//
+//            addNextFooter()
+//
+//
+//        }
 
 
     }
