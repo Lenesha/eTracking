@@ -145,11 +145,7 @@ class TripSignatureEmptyScanFragment() : Fragment() {
                 .findViewById<TextView>(R.id.amount)
                 .setText(item.barcodeValue)
 
-            detailsFooter!!.findViewById<ImageView>(R.id.delete).setOnClickListener({
-
-                expandableListView.removeFooterView(detailsFooter)
-
-            })
+            detailsFooter!!.findViewById<ImageView>(R.id.delete).visibility = GONE
             detailsFooter!!.findViewById<View>(R.id.update_status).visibility = GONE
 
             expandableListView.addFooterView(detailsFooter)
