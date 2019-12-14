@@ -36,6 +36,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_customerdelivery.*
+import kotlinx.android.synthetic.main.fragment_customerdelivery.empty_list_item
+import kotlinx.android.synthetic.main.fragment_customerdelivery.expandableListView
+import kotlinx.android.synthetic.main.fragment_customerdelivery.search
+import kotlinx.android.synthetic.main.fragment_loading.*
 import me.sudar.zxingorient.ZxingOrient
 import me.sudar.zxingorient.ZxingOrientResult
 
@@ -53,6 +57,7 @@ class TripSignatureEmptyScanFragment() : Fragment() {
     var emptyCylinderCount = 1
 
     var emptyCylinderFooter :View?=null
+    var scanemptyCylinderFooter :View?=null
 
     var signaturefooter :View?=null
 
@@ -124,7 +129,7 @@ class TripSignatureEmptyScanFragment() : Fragment() {
                 .findViewById<TextView>(R.id.descriptionText)
                 .setText("SL NO")
             detailsFooter!!.findViewById<View>(R.id.la1)
-                .findViewById<TextView>(R.id.amount).setText(item.slNo!!)
+                .findViewById<TextView>(R.id.amount).setText(item.slNo!!.toString())
 
             detailsFooter!!.findViewById<View>(R.id.la2)
                 .findViewById<TextView>(R.id.descriptionText)
@@ -149,8 +154,9 @@ class TripSignatureEmptyScanFragment() : Fragment() {
 
             expandableListView.addFooterView(detailsFooter)
         }
+        addScannEmptyCyclinderFooter()
 
-
+        addSignatureFooter()
     }
 
 
@@ -467,5 +473,52 @@ class TripSignatureEmptyScanFragment() : Fragment() {
         dialog.dismiss()
 
     }
+    private fun addScannEmptyCyclinderFooter() {
+        if(scanemptyCylinderFooter!=null)
+            expandableListView.removeFooterView(scanemptyCylinderFooter)
+        scanemptyCylinderFooter =
+            layoutInflater.inflate(
+                R.layout.update_status,
+                expandableListView,
+                false
+            )
+        scanemptyCylinderFooter!!.findViewById<TextView>(R.id.update).setText("Scan empty Cylinder")
+        scanemptyCylinderFooter!!
+            .findViewById<TextView>(R.id.update).setOnClickListener({
+
+
+                run {
+
+                    val orient = ZxingOrient(this).setBeep(true)
+                    orient.addExtra("RCODE", 1)
+                    orient.initiateScan()
+                }
+
+            })
+
+        expandableListView.addFooterView(scanemptyCylinderFooter)
+    }
+
+
+    private fun addSignatureFooter(){
+
+        signaturefooter =
+            layoutInflater.inflate(R.layout.signature_imageview, expandableListView, false)
+
+        signaturefooter!!.findViewById<View>(R.id.sign_image).findViewById<TextView>(R.id.update).setText("Sign")
+
+        signaturefooter!!.findViewById<View>(R.id.sign_image).findViewById<TextView>(R.id.update).setOnClickListener({
+
+
+            val intent =   Intent(activity, SignatureActivity::class.java)
+
+            startActivityForResult(intent,25)
+
+        })
+
+        expandableListView.addFooterView(signaturefooter)
+
+    }
+
 
 }
